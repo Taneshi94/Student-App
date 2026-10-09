@@ -1,3 +1,6 @@
+package com.example.myapplication.views
+
+import android.R
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         // Thiết lập Adapter cho Dropdown
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, subjects)
+        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, subjects)
         val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteSubject)
 
         autoCompleteTextView.setAdapter(adapter)
