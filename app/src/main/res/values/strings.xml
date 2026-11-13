@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="login">Đăng nhập</string>
+    <string name="choose_subject">Chọn môn học</string>
+    <string name="study_politics">Học chính trị</string>
+    <string name="review">Ôn tập</string>
+    <string name="practice_exam">Luyện thi</string>
+    <string name="exam_history">Lịch sử thi</string>
+    <string name="review_progress">Câu số %1$d</string>
+    <string name="review_confirm">Xác nhận</string>
+    <string name="review_next">Câu tiếp theo</string>
+    <string name="review_correct">Chính xác!</string>
+    <string name="review_wrong">Sai. Đáp án đúng: %1$s</string>
 </resources>

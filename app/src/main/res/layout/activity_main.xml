@@ -1,253 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    tools:context=".MainActivity">
+    android:background="@color/screen_bg"
+    android:orientation="vertical">
 
-    <!-- 1. HEADER BAR -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerBar"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#154A96"
-        android:paddingHorizontal="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <!-- Thanh trên cùng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/header_blue"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
 
         <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:contentDescription="QNU Logo"
-            android:src="@drawable/logo_qnu"
-            app:layout_bottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:contentDescription="Logo"
+            android:src="@drawable/logo" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Cài đặt"
+            android:padding="8dp"
+            android:src="@drawable/ic_settings" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#0C346A"
-            android:text="Đăng nhập"
+            android:text="@string/login"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:cornerRadius="4dp"
-            app:icon="@android:drawable/ic_menu_login"
-            app:iconPadding="4dp"
-            app:iconTint="@android:color/white"
-            app:layout_bottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnMenu"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@color/navy"
+            app:cornerRadius="6dp"
+            app:icon="@drawable/ic_login"
+            app:iconTint="@color/white" />
 
-        <ImageView
-            android:id="@+id/btnMenu"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Menu"
-            android:padding="4dp"
-            android:src="@android:drawable/ic_menu_sort_by_size"
-            app:layout_bottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/white" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Nội dung -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- 2. DROPDOWN MENU CHỌN MÔN HỌC -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/subjectDropdownLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="Chọn môn học"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerBar">
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteSubject"
+        <!-- DropBox chọn môn -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:text="Triết học Mác-Lênin"
-            android:textColor="#0C346A"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:hint="@string/choose_subject">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/dropdownSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- 3. CARD CHỨA CÁC THẺ TỰ CHỌN (LUYỆN ĐỀ / XEM KẾT QUẢ) -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardOptions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subjectDropdownLayout">
-
-        <LinearLayout
+        <!-- Thẻ Học chính trị -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/stroke"
+            app:cardBackgroundColor="@color/card_bg"
+            app:strokeWidth="1dp">
 
-            <!-- Card Header -->
             <LinearLayout
+                android:id="@+id/cardContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#0C346A"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="12dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_agenda"
-                    app:tint="@android:color/white" />
+                <LinearLayout
+                    android:id="@+id/cardHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@color/navy"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_article" />
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/study_politics"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imgArrow"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_expand_more" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menuContainer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Chức năng ôn luyện"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/rowReview"
+                        style="@style/MenuRow">
+
+                        <ImageView
+                            style="@style/MenuRowIcon"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            style="@style/MenuRowText"
+                            android:text="@string/review" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rowPractice"
+                        style="@style/MenuRow">
+
+                        <ImageView
+                            style="@style/MenuRowIcon"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            style="@style/MenuRowText"
+                            android:text="@string/practice_exam" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rowHistory"
+                        style="@style/MenuRow">
+
+                        <ImageView
+                            style="@style/MenuRowIcon"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            style="@style/MenuRowText"
+                            android:text="@string/exam_history" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/contentContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
             </LinearLayout>
-
-            <!-- Card Body: Các thẻ chức năng -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <!-- Thẻ 1: Luyện đề tự do -->
-                <LinearLayout
-                    android:id="@+id/btnFreePractice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_edit"
-                        app:tint="#154A96" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Luyện đề tự do"
-                        android:textColor="#111111"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0" />
-
-                <!-- Thẻ 2: Luyện đề thời gian thật -->
-                <LinearLayout
-                    android:id="@+id/btnRealTimePractice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_recent_history"
-                        app:tint="#154A96" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Luyện đề thời gian thật"
-                        android:textColor="#111111"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0" />
-
-                <!-- Thẻ 3: Xem kết quả thi -->
-                <LinearLayout
-                    android:id="@+id/btnViewResults"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_view"
-                        app:tint="#154A96" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Xem kết quả thi"
-                        android:textColor="#111111"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- 4. FLOATING ACTION BUTTON -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="Settings"
-        android:src="@android:drawable/ic_menu_manage"
-        app:backgroundTint="#0C346A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</LinearLayout>

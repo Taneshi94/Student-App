@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="header_blue">#365CB0</color>
+    <color name="navy">#1B2A5E</color>
+    <color name="text_navy">#1F2F5C</color>
+    <color name="bell_gray">#6B7A99</color>
+
+    <!-- Màu theo vai trò, đổi theo chế độ sáng/tối -->
+    <color name="screen_bg">#FFFFFF</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_primary">#1F2F5C</color>
+    <color name="icon_secondary">#6B7A99</color>
+    <color name="stroke">#E0E0E0</color>
+    <color name="correct_green">#2E7D32</color>
+    <color name="wrong_red">#C62828</color>
 </resources>
